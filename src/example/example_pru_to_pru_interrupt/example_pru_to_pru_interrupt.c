@@ -27,7 +27,7 @@ int main(void)
   
   tpruss_intc_initdata pruss_intc_initdata = PRUSS_INTC_INITDATA;
  
-  printf("\nRunning example %s.\n", "example_pru_to_pru_interrupt");
+  printf("Running example %s.\n", "example_pru_to_pru_interrupt");
   
   // Initialize the PRU
   prussdrv_init ();		
