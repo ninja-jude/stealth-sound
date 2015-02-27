@@ -1,0 +1,72 @@
+http://processors.wiki.ti.com/index.php/AM335x_PRU_Read_Latencies
+
+Introduction
+The AM335x PRU-ICSS is a master initiator with access to all SoC resources, in addition to the local subsystem resources. This wiki article documents best-case access latencies for the AM335x PRU reading various SoC resources.
+
+The PRU write instruction is a fire-and-forget command that executes in ~1 cycle. The PRU read instruction executes in ~2 cycles, plus additional latencies due to traversing through interconnect layers and variable processing loads. In general, MMRs that are "closer" to the PRU (i.e. within the PRU subsystem) will have lower access latencies.
+
+The read latency values provided in this article are considered "best-case," accounting for the 2 cycle instruction and interconnect introduced latency. Note memory accesses outside of the PRU subsystem are not deterministic. 
+
+PRU Read Latencies
+The following are considered "best-case" read latency values for the PRU on AM335x.
+
+ Table 1. AM335x PRU Read Latencies - Local PRU Subsystem Resources MMRs 	Read Latency (PRU cycles @ 200MHz)
+PRU CTRL 	4
+PRU CFG 	3
+PRU INTC 	3
+PRU DRAM 	3
+PRU Shared DRAM 	3
+PRU ECAP 	4
+PRU UART 	14
+PRU R31 (GPI) 	1 
+
+ Table 2. AM335x PRU Read Latencies - Global SoC Resources MMRs 	Read Latency (PRU cycles @ 200MHz)
+L3F Interconnect
+EMIF 	36
+TPTC0-2 (EDMA3TC0-2) 	34
+TPCC (EDMA3CC) 	41
+OCMC RAM 	27
+L3S Interconnect
+GPMC 	38
+McASP0-1 	38
+ADC/TSC 	42
+MMCSD2 	38
+L4_PER Interconnect
+DCAN0-1 	40
+DMTIMER2-7 	38
+PWMSS 	38
+ELM 	34
+GPIO1-3 	34
+I2C1-2 	34
+LCDC 	38
+Mailbox 	38
+MMCSD0-1 	34
+McSPI0-1 	34
+Spinlock 	38
+UART1-5 	34
+L4_FAST Interconnect
+CPSW/GEMAC 	41
+L4_WKUP Interconnect
+ADC/TSC 	41
+Control Module 	41
+DMTIMER0 	38
+DMTIMER1_1MS 	38
+GPIO0 	38
+I2C0 	38
+UART0 	38
+WDT1 	38
+PRCM 	88
+RTC 	62 
+
+PRU Data Transfer Latencies
+The following are considered "best-case" data transfer latencies for the AM335x PRU.
+
+ Table 3. PRU Data Transfer Latencies Source 	Destination 	Size (bytes) 	Latency (PRU cycles @ 200MHz)
+PRU Shared RAM 	DDR 	4 	5
+32 	19
+128 	65
+DDR 	PRU Shared RAM 	4 	47
+32 	62
+128 	107 
+
+
