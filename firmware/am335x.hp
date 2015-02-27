@@ -1,0 +1,50 @@
+//-----------------------------------------------------------------------------
+// am335x.hp
+//
+// Standard register addresses and offsets.
+//-----------------------------------------------------------------------------
+
+// Refer to this mapping in the file - /prussdrv/include/pruss_intc_mapping.h
+#define PRU0_PRU1_INTERRUPT 17
+#define PRU1_PRU0_INTERRUPT 18
+#define PRU0_ARM_INTERRUPT 19
+#define PRU1_ARM_INTERRUPT 20
+#define ARM_PRU0_INTERRUPT 21
+#define ARM_PRU1_INTERRUPT 22
+
+#define CONST_PRUSSINTC C0
+#define CONST_PRUCFG C4
+#define CONST_PRUDRAM C24
+#define CONST_PRUSHAREDRAM C28
+#define CONST_L3RAM C30
+#define CONST_DDR C31
+
+// The addresses of the PRU0 and PRU1 control registers.
+#define PRU0_CTRL 0x22000
+#define PRU1_CTRL 0x24000
+
+// Offset of Constant Table Programmable Pointer Registers
+// from the PRUx_CTRL address.
+#define CTPPR0_OFFSET 0x28
+#define CTPPR1_OFFSET 0x2C
+#define CTBIR0_OFFSET 0x20
+#define CTBIR1_OFFSET 0x24
+
+// The three most useful values to load into the C28 constant table
+// programmable pointer register.
+#define OWN_RAM     0x000  // PRU's own RAM
+#define OTHER_RAM   0x020  // Other PRU's RAM
+#define SHARED_RAM  0x100  // Shared RAM
+
+#define GER_OFFSET   0x10
+#define HIESR_OFFSET 0x34
+#define SICR_OFFSET  0x24
+#define EISR_OFFSET  0x28
+
+#define INTC_CHNMAP_REGS_OFFSET       0x0400
+#define INTC_HOSTMAP_REGS_OFFSET      0x0800
+#define INTC_HOSTINTPRIO_REGS_OFFSET  0x0900
+#define INTC_HOSTNEST_REGS_OFFSET     0x1100
+
+
+

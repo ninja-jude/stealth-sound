@@ -1,0 +1,48 @@
+
+
+
+
+//------------------------------------------------------------------
+// @brief Spins to waste time.
+//
+// Uses 2*n + 1 clock cycles.
+// The default register used for spinning is r0
+// but an alternate register can be specified.
+// Because the ldi instruction is used, n is limited to 65535.
+//
+// Usage:
+//  spinner  // spins 2 clock cycle using register r0
+//  spinner 16  // spins 33 clock cycles using register r0
+//  spinner 10, r2  // spins 21 clock cycles using register r2
+//
+// NOTE: Labels defined within a macro are considered local and can only 
+// be referenced from within the macro. This is accomplished by expanding
+// all labels within a macro to be unique. So do not worry about the
+// label SPIN and SPIN1.
+// @see Section 5.3.3.1.1, p.46
+//
+// @param [in] dst [default=r0] register used for spinning
+// @param [in] n [default=1] number of times to spin
+//------------------------------------------------------------------
+.macro spinner
+.mparam n=1, dst=r0
+SPIN:
+  ldi dst, n
+SPIN1:
+  sub dst, dst, 1
+  qbne SPIN1, dst, 0
+.endm
+
+
+// @brief Wastes a single clock cycle.
+.macro spin1
+.mparam dst=r0
+  or dst, dst, dst
+.endm
+
+
+
+
+
+
+
